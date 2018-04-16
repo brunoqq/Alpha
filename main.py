@@ -192,14 +192,14 @@ async def on_message(message):
                         "+dado » Role um dado de um número de 1 á 6\n"
                         "+moeda » Brinque de cara ou coroa\n"
                         "+avatar <usuário> » Veja o avatar seu ou de um membro\n"
-                        "+help » Veja as informações do servidor AlphaCorporation\n"
+                        "+help » Veja as informações do servidor Alpha\n"
                         "+convite » Gere um convite e use o mesmo para convidar todos para nossa comunidade\n"
                         "+ping » Veja o tempo de resposta do bot\n"
                         "+moderação » Veja os comandos para moderação (Somente staff tem permissão para o mesmo)"
                         "Desenvolvido pelo Bruno. Mais informações aqui: [Clique.](https://discord.gg/TuDXw)"
         )
         embed.set_author(
-            name="AlphaCorporation",
+            name="Alpha",
             icon_url=client.user.avatar_url
         )
         embed.set_footer(
@@ -229,7 +229,7 @@ async def on_message(message):
                         "Desenvolvido pelo Bruno. Mais informações aqui: [Clique.](https://discord.gg/TuDXw)"
         )
         embed.set_author(
-            name="AlphaCorporation",
+            name="Alpha",
             icon_url=client.user.avatar_url
         )
         embed.set_footer(
@@ -259,8 +259,7 @@ async def on_message(message):
             await client.delete_message(botmsgdelete)
 
         else:
-            botmsgdelete = await client.send_message(message.channel,
-                                                     'Utilize o comando digitando /delete <numero de 1 a 100>')
+            botmsgdelete = await client.send_message(message.channel, 'Utilize o comando digitando /delete <numero de 1 a 100>')
             await asyncio.sleep(5)
             await client.delete_message(message)
             await client.delete_message(botmsgdelete)

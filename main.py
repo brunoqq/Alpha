@@ -55,7 +55,7 @@ async def on_message(message):
 #CONVITE
     if message.content.lower().startswith('!convite'):
      invite = await client.create_invite(message.channel, max_uses=1, xkcd=True)
-     await client.send_message(message.author, "Seu convite da AlphaCorporation é: {}".format(invite.url))
+     await client.send_message(message.author, "Seu convite da Alpha é: {}".format(invite.url))
      await client.send_message(message.channel, "Olá {}, um convite foi enviado no seu privado!".format(message.author.mention))
 #VOTAÇÃO
     elif message.content.lower().startswith('!votação'):
@@ -165,10 +165,10 @@ async def on_message(message):
         embed = discord.Embed(
             title="",
             color=0xe7002f,
-            description="Olá, eu sou o bot do AlphaCorporation, um bot muito legal com várias funções. Para ver meus comandos digite: +comandos. Caso precise de ajuda contate um staff no servidor."
+            description="Olá, eu sou o bot do Alpha, um bot muito legal com várias funções. Para ver meus comandos digite: +comandos. Caso precise de ajuda contate um staff no servidor."
         )
         embed.set_author(
-            name="AlphaCorporation ",
+            name="Alpha",
             icon_url=client.user.avatar_url
         )
         embed.set_footer(

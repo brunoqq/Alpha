@@ -183,7 +183,7 @@ async def on_message(message):
             message.author.mention))
         await client.send_message(message.author, embed=embed)
 #COMANDOSINFO
-    if message.content.lower().startswith('+comandos'):
+    if message.content.lower().startswith('!comandos'):
         embed = discord.Embed(
             title="Meus comandos:",
             color=0xe7002f,
@@ -214,7 +214,7 @@ async def on_message(message):
             message.author.mention))
         await client.send_message(message.author, embed=embed)
 #MODERAÇÃO
-    if message.content.lower().startswith('+moderação'):
+    if message.content.lower().startswith('!moderação'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         embed = discord.Embed(

@@ -28,12 +28,12 @@ async def on_ready():
     print (client.user.name)
     print(f"Bot Version: {version}")
     print("=================================")
-    await client.change_presence(game=discord.Game(name="+HELP", url='https://twitch.tv/TheDiretor', type=1))
+    await client.change_presence(game=discord.Game(name="!HELP", url='https://twitch.tv/TheDiretor', type=1))
 
 @client.event
 async def on_message(message):
 #PING
-    if message.content.lower().startswith('+ping'):
+    if message.content.lower().startswith('!ping'):
         timep = time.time()
         emb = discord.Embed(title='Aguarde', color=0xe7002f)
         pingm0 = await client.send_message(message.channel, embed=emb)
@@ -41,24 +41,24 @@ async def on_message(message):
         pingm1 = discord.Embed(title='Pong!', description=':ping_pong: Ping - %.01f segundos' % ping, color=0xe7002f)
         await client.edit_message(pingm0, embed=pingm1)
 #DADO
-    if message.content.lower().startswith('+dado'):
+    if message.content.lower().startswith('!dado'):
         choice = random.randint(1, 6)
         embeddad = discord.Embed(title='Dado', description='🎲 Joguei o dado, o resultado é :  {}'.format(choice),colour=0xe7002f)
         await client.send_message(message.channel, embed=embeddad)
 #SORTEIO
-    if message.content.lower().startswith('+sorteio'):
+    if message.content.lower().startswith('!sorteio'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         choice = random.randint(1, 999)
         embedsorteio = discord.Embed(title='🎉 Sorteio', description='O ganhador do sorteio foi o numero {}, Parabéns! Contate algum membro da staff para receber seu premio!'.format(choice),colour=0xe7002f)
         await client.send_message(message.channel, embed=embedsorteio)
 #CONVITE
-    if message.content.lower().startswith('+convite'):
+    if message.content.lower().startswith('!convite'):
      invite = await client.create_invite(message.channel, max_uses=1, xkcd=True)
      await client.send_message(message.author, "Seu convite da AlphaCorporation é: {}".format(invite.url))
      await client.send_message(message.channel, "Olá {}, um convite foi enviado no seu privado!".format(message.author.mention))
 #VOTAÇÃO
-    elif message.content.lower().startswith('+votação'):
+    elif message.content.lower().startswith('!votação'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         msg = message.content[9:2000]
@@ -67,14 +67,14 @@ async def on_message(message):
         await client.add_reaction(botmsg, '👎')
         await client.delete_message(message)
 #JOGANDO NO BOT
-    if message.content.startswith('+jogando'):
+    if message.content.startswith('!jogando'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         game = message.content[9:]
         await client.change_presence(game=discord.Game(name=game))
         await client.send_message(message.channel, "Status de jogo alterado para: " + game + " ")
 #AVATAR
-    elif message.content.lower().startswith('+avatar'):
+    elif message.content.lower().startswith('!avatar'):
         try:
             membro = message.mentions[0]
             avatarembed = discord.Embed(
@@ -95,14 +95,14 @@ async def on_message(message):
             avatarembed2.set_image(url=message.author.avatar_url)
             await client.send_message(message.channel, embed=avatarembed2)
 #MOEDA
-    if message.content.lower().startswith('+moeda'):
+    if message.content.lower().startswith('!moeda'):
         choice = random.randint(1, 2)
         if choice == 1:
          await client.add_reaction(message, '🌝')
         if choice == 2:
             await client.add_reaction(message, '👑')
 #SERVERINFO
-    if message.content.lower().startswith('+serverinfo'):
+    if message.content.lower().startswith('!serverinfo'):
         server = message.server
         embedserver = discord.Embed(
             title='Informaçoes do Servidor',
@@ -121,7 +121,7 @@ async def on_message(message):
         embedserver.set_footer(text="By: brunoqq")
         await client.send_message(message.channel, embed=embedserver)
 #USERINFO
-    if message.content.startswith('+user'):
+    if message.content.startswith('!user'):
         try:
             user = message.mentions[0]
             userjoinedat = str(user.joined_at).split('.', 1)[0]
@@ -161,7 +161,7 @@ async def on_message(message):
         finally:
             pass
 #HELP
-    if message.content.lower().startswith('+help'):
+    if message.content.lower().startswith('!help'):
         embed = discord.Embed(
             title="",
             color=0xe7002f,
@@ -187,15 +187,15 @@ async def on_message(message):
         embed = discord.Embed(
             title="Meus comandos:",
             color=0xe7002f,
-            description="+serverinfo » Veja as informações do servidor\n"
-                        "+user <usuário> » Veja as informações de um usuário\n"
-                        "+dado » Role um dado de um número de 1 á 6\n"
-                        "+moeda » Brinque de cara ou coroa\n"
-                        "+avatar <usuário> » Veja o avatar seu ou de um membro\n"
-                        "+help » Veja as informações do servidor Alpha\n"
-                        "+convite » Gere um convite e use o mesmo para convidar todos para nossa comunidade\n"
-                        "+ping » Veja o tempo de resposta do bot\n"
-                        "+moderação » Veja os comandos para moderação (Somente staff tem permissão para o mesmo)"
+            description="!serverinfo » Veja as informações do servidor\n"
+                        "!user <usuário> » Veja as informações de um usuário\n"
+                        "!dado » Role um dado de um número de 1 á 6\n"
+                        "!moeda » Brinque de cara ou coroa\n"
+                        "!avatar <usuário> » Veja o avatar seu ou de um membro\n"
+                        "!help » Veja as informações do servidor Alpha\n"
+                        "!convite » Gere um convite e use o mesmo para convidar todos para nossa comunidade\n"
+                        "!ping » Veja o tempo de resposta do bot\n"
+                        "!moderação » Veja os comandos para moderação (Somente staff tem permissão para o mesmo)"
                         "Desenvolvido pelo Bruno. Mais informações aqui: [Clique.](https://discord.gg/TuDXw)"
         )
         embed.set_author(
@@ -220,12 +220,12 @@ async def on_message(message):
         embed = discord.Embed(
             title="Comandos de moderação:",
             color=0xe7002f,
-            description="+apagar <1 à 999> » Apague de 1 à 999 mensagens\n"
-                        "+say » Bot repete a mensagem que foi dita\n"
-                        "+aviso » Bot repete a mensagem que foi dita com sistema de embed\n"
-                        "+sorteio » Gera um número de 1 à 999 para o sorteio\n"
-                        "+jogando » Altera o status de jogando do bot\n"
-                        "+votação » Inicia uma votação com a frase e a reação de like e deslike no bot\n"
+            description="!apagar <1 à 999> » Apague de 1 à 999 mensagens\n"
+                        "!say » Bot repete a mensagem que foi dita\n"
+                        "!aviso » Bot repete a mensagem que foi dita com sistema de embed\n"
+                        "!sorteio » Gera um número de 1 à 999 para o sorteio\n"
+                        "!jogando » Altera o status de jogando do bot\n"
+                        "!votação » Inicia uma votação com a frase e a reação de like e deslike no bot\n"
                         "Desenvolvido pelo Bruno. Mais informações aqui: [Clique.](https://discord.gg/TuDXw)"
         )
         embed.set_author(
@@ -244,7 +244,7 @@ async def on_message(message):
             message.author.mention))
         await client.send_message(message.author, embed=embed)
 #APAGAR
-    if message.content.lower().startswith('+apagar'):
+    if message.content.lower().startswith('!apagar'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         qntdd = message.content.strip('+apagar ')
@@ -264,14 +264,14 @@ async def on_message(message):
             await client.delete_message(message)
             await client.delete_message(botmsgdelete)
 #SAY
-    if message.content.lower().startswith("+say"):
+    if message.content.lower().startswith("!say"):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         msg = message.content[5:2000]
         await client.send_message(message.channel, msg)
         await client.delete_message(message)
 #AVISO
-    if message.content.startswith('+aviso'):
+    if message.content.startswith('!aviso'):
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, '❌ Você não possui permissão para executar este comando!')
         await client.delete_message(message)
@@ -286,14 +286,14 @@ async def on_message(message):
         finally:
             pass
 #BAN
-    elif message.content.lower().startswith('+ban'):
+    elif message.content.lower().startswith('!ban'):
         membro = message.mentions[0]
         if not message.author.server_permissions.administrator:
             return await client.send_message(message.channel, "❌ {} Você nao possui permissão para executar este comando!".format(message.author.mention))
         await client.send_message(message.channel, "✔ O staff {} baniu o membro {}!".format(message.author.mention, message.mentions[0].mention))
         await client.ban(membro)
 #KICK
-    elif message.content.lower().startswith('+kick'):
+    elif message.content.lower().startswith('!kick'):
          member = message.mentions[0]
          if not message.author.server_permissions.administrator:
              return await client.send_message(message.channel, "❌ {} Você nao possui permissão para executar este comando!".format(  message.author.mention))

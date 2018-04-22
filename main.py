@@ -315,7 +315,8 @@ async def on_message(message):
         cargo = discord.utils.get(message.author.server.roles, name='Mutado ❌')
         await client.remove_roles(mention, cargo)
         await client.send_message(message.channel, '✔ O membro {} foi desmutado com sucesso!'.format(mention))
-        if message.content.lower().startswith("!gamer"):
+        
+    if message.content.lower().startswith("!gamer"):
         embed1 = discord.Embed(
             title="Escolha seu jogo!",
             color=0x1209e0,

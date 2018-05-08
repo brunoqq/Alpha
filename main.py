@@ -331,7 +331,7 @@ async def on_message(message):
                         "- Pubg = ☠\n"
                         "- Fortnite = ⚔", )
 
-        botmsg = await client.send_message(message.author, embed=embed1)
+        botmsg = await client.send_message(message.channel, embed=embed1)
         
         await client.add_reaction(botmsg, "🎮")
         await client.add_reaction(botmsg, "🏆")

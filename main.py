@@ -330,7 +330,8 @@ async def on_message(message):
                         "- Pubg = ☠\n"
                         "- Fortnite = ⚔", )
 
-        botmsg = await client.send_message(message.channel, embed=embed1)
+        botmsg = await client.send_message(message.author, embed=embed1)
+        botmsg = await client.send_message(message.channel, "Foi enviado as seleções de cargos de jogos no seu privado, {}!".format(message.member.mention))
 
         await client.add_reaction(botmsg, "🎮")
         await client.add_reaction(botmsg, "🏆")

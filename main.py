@@ -316,7 +316,8 @@ async def on_message(message):
         await client.remove_roles(mention, cargo)
         await client.send_message(message.channel, '✔ O membro {} foi desmutado com sucesso!'.format(mention))
         
-    if message.content.lower().startswith("!gamer"):
+    if message.content.lower().startswith("!jogo"):
+        await client.delete_message(message)
         embed1 = discord.Embed(
             title="Escolha seu jogo!",
             color=0x1209e0,
@@ -341,6 +342,9 @@ async def on_message(message):
         await client.add_reaction(botmsg, "🚗")
         await client.add_reaction(botmsg, "☠")
         await client.add_reaction(botmsg, "⚔")
+        
+        await asyncio.sleep(30)
+        await client.delete_message(botmsg)
 
         global msg_id
         msg_id = botmsg.id
